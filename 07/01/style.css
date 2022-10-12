@@ -1,0 +1,19 @@
+.timer-window{
+    display: inline-block;
+    padding: 5px;
+    margin-bottom: 1em;
+    font-size: 22px;
+    border: 2px solid black;
+}
+
+.time-input{
+    display: block;
+    font-size: 22px;
+    margin-bottom: 1em;
+}
+
+.timer-start{
+    display: block;
+    font-size: 22px;
+    margin-bottom: 1em;
+}
