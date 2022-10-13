@@ -62,6 +62,18 @@
         return list;
     }
 
+    function controlButtonWrapper(todoItem){
+        todoItem.doneButton.addEventListener("click", function(){
+            todoItem.item.classList.toggle("list-group-item-success");
+        });
+
+        todoItem.deleteButton.addEventListener("click", function(){
+            if (confirm("Вы уверенны?")){
+                todoItem.item.remove();
+            }
+        });
+    }
+
     function createTodoApp(container, title = "Список дел", initialTasks = []){
         let todoAppTitle = createAppTitle(title);
         let todoItemForm = createTodoItemForm();
@@ -90,15 +102,7 @@
                 if(task.done)
                     todoItem.item.classList.toggle("list-group-item-success");
                 
-                todoItem.doneButton.addEventListener("click", function(){
-                    todoItem.item.classList.toggle("list-group-item-success");
-                });
-    
-                todoItem.deleteButton.addEventListener("click", function(){
-                    if (confirm("Вы уверенны?")){
-                        todoItem.item.remove();
-                    }
-                });
+                controlButtonWrapper(todoItem);
                 todoList.append(todoItem.item);
             }
         }
@@ -106,22 +110,13 @@
         todoItemForm.form.addEventListener("submit", function(e)
         {
             e.preventDefault();
-
+            
             if(!todoItemForm.input.value){
                 return;
             }
 
             let todoItem = createTodoItem(todoItemForm.input.value);
-
-            todoItem.doneButton.addEventListener("click", function(){
-                todoItem.item.classList.toggle("list-group-item-success");
-            });
-
-            todoItem.deleteButton.addEventListener("click", function(){
-                if (confirm("Вы уверенны?")){
-                    todoItem.item.remove();
-                }
-            });
+            controlButtonWrapper(todoItem);
             todoList.append(todoItem.item);
             todoItemForm.input.value = "";
             todoItemForm.button.disabled = true;
